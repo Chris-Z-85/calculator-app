@@ -21,35 +21,35 @@
           <label for="3">3</label><br />
         </fieldset>
       </div>
-      <div class="calc__display">0</div>
+      <div class="calc__display"></div>
       <div class="calc__keypad">
         <div class="keypad__row">
-          <div class="key">7</div>
-          <div class="key">8</div>
-          <div class="key">9</div>
-          <div class="key key_del">del</div>
+          <div data-type="number" class="key">7</div>
+          <div data-type="number" class="key">8</div>
+          <div data-type="number" class="key">9</div>
+          <div data-delete class="key key_del">del</div>
         </div>
         <div class="keypad__row">
-          <div class="key">4</div>
-          <div class="key">5</div>
-          <div class="key">6</div>
-          <div class="key">+</div>
+          <div data-type="number" class="key">4</div>
+          <div data-type="number" class="key">5</div>
+          <div data-type="number" class="key">6</div>
+          <div data-key="plus" data-type="operator" class="key">+</div>
         </div>
         <div class="keypad__row">
-          <div class="key">1</div>
-          <div class="key">2</div>
-          <div class="key">3</div>
-          <div class="key">-</div>
+          <div data-type="number" class="key">1</div>
+          <div data-type="number" class="key">2</div>
+          <div data-type="number" class="key">3</div>
+          <div data-key="minus" data-type="operator" class="key">-</div>
         </div>
         <div class="keypad__row">
-          <div class="key">.</div>
-          <div class="key">0</div>
-          <div class="key">/</div>
-          <div class="key">x</div>
+          <div data-type="number" class="key">.</div>
+          <div data-type="number" class="key">0</div>
+          <div data-key="divide" data-type="operator" class="key">/</div>
+          <div data-key="times" data-type="operator" class="key">x</div>
         </div>
         <div class="keypad__row">
-          <div class="key key_reset">reset</div>
-          <div class="key key_equal">=</div>
+          <div data-type="reset" data-reset class="key key_reset">reset</div>
+          <div data-type="equal" class="key key_equal">=</div>
         </div>
       </div>
     </div>
