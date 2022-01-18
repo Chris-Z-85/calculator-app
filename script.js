@@ -27,61 +27,40 @@ function changeTheme(e) {
 }
 
 //Calculator
-const calculator = document.querySelector(".calc");
-const keyPad = calculator.querySelector(".calc__keypad");
-const display = calculator.querySelector(".calc__display");
-const operatorKeys = keyPad.querySelectorAll('[data-type="operator"]');
+const display = document.querySelector(".calc__display");
+const keys = document.querySelectorAll("[data-type='key']");
+const delKey = document.querySelector("[data-type='delete']");
+const resetKey = document.querySelector("[data-type='reset']");
+const equalKey = document.querySelector("[data-type='equal']");
 
-keyPad.addEventListener("click", (e) => {
-  if (!e.target.closest(".key")) return;
+const updateDisplay = (value) => {
+  display.textContent += value;
+};
 
-  const key = e.target;
-  const keyValue = key.textContent;
-  const displayValue = display.textContent;
-  const { type } = key.dataset;
-  const { previousKeyType } = calculator.dataset;
-
-  if (type === "number") {
-    if (displayValue === "0" || previousKeyType === "operator") {
-      display.textContent = keyValue;
-    } else {
-      display.textContent = displayValue + keyValue;
-    }
-  }
-
-  if (type === "operator") {
-    operatorKeys.forEach((el) => {
-      el.dataset.state = "";
-    });
-    key.dataset.state = "selected";
-
-    calculator.dataset.firstNumber = displayValue;
-    calculator.dataset.operator = key.dataset.key;
-  }
-
-  if (type === "equal") {
-    const firstNumber = calculator.dataset.firstNumber;
-    const operator = calculator.dataset.operator;
-    const secondNumber = displayValue;
-
-    display.textContent = calculate(firstNumber, operator, secondNumber);
-  }
-
-  if (type === "reset") {
-    display.textContent = "0";
-    delete calculator.dataset.firstNumber;
-    delete calculator.dataset.operator;
-  }
-
-  calculator.dataset.previousKeyType = type;
+keys.forEach((key) => {
+  key.addEventListener("click", (e) => {
+    const keyValue = e.target.dataset.value;
+    updateDisplay(keyValue);
+  });
 });
 
-function calculate(firstNumber, operator, secondNumber) {
-  firstNumber = parseInt(firstNumber);
-  secondNumber = parseInt(secondNumber);
+delKey.addEventListener("click", () => {
+  display.textContent = display.textContent.substring(
+    0,
+    display.textContent.length - 1
+  );
+});
 
-  if (operator === "plus") return firstNumber + secondNumber;
-  if (operator === "minus") return firstNumber - secondNumber;
-  if (operator === "times") return firstNumber * secondNumber;
-  if (operator === "divide") return firstNumber / secondNumber;
-}
+resetKey.addEventListener("click", () => {
+  display.textContent = "";
+});
+
+equalKey.addEventListener("click", () => {
+  calculate(display.textContent);
+});
+
+const calculate = (value) => {
+  display.textContent
+    ? (display.textContent = eval(display.textContent))
+    : false;
+};
