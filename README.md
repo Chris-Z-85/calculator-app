@@ -47,19 +47,15 @@ Users should be able to:
 
 ### What I learned
 
-HTML & CSS Part
+#### HTML & CSS Part
 
 The calculator layout was based on the design provided by the Frontend Mentor. Classes were named according to BEM methodology. They keys on the keypad have been given classes in order to be styled in CSS, as well as custom data attributes to be later targeted in JavaScript code.
-
-Example:
 
 ```html
 <div data-type="key" data-value="*" class="key">x</div>
 ```
 
-The more complex part to tackle was a theme toggle button, which also used substantial amount of code to write. I didn’t use the checkbox, since there were 3 themes to choose from. I have decided to go with radio buttons grouped in `<fieldset>` element together with the `<label>` elements. I have positions all the elements according to the design. Then, the background was added and the thumb button was animated according to the input selected with: `transform 0.2s ease-in-out to make smooth transition`. The keypad of the calculator was laid out using the CSS Grid.
-
-Example:
+The more complex part to tackle was a theme toggle button, which also used substantial amount of code to write. I didn’t use the checkbox, since there were 3 themes to choose from. I have decided to go with radio buttons grouped in `<fieldset>` element together with the `<label>` elements. I have positions all the elements according to the design. Then, the background was added and the thumb button was animated according to the input selected with: `transform 0.2s ease-in-out` to make smooth transition. The keypad of the calculator was laid out using the CSS Grid.
 
 ```css
 .calc__theme input:first-of-type:checked ~ label:last-of-type::before {
@@ -77,13 +73,11 @@ Example:
 
 When the time to tackle the three colour schemes came, I have decided to change colours by adding theme classes using JavaScript. I decided to make three theme classes with CSS variables. Each class has the same variables names for different element e.g. background colour, display or text colour but with different values in different themes. The most important part in the process of name creation for variables, was to identify elements that will change colours.
 
-JavaScript Part
+#### JavaScript Part
 
 The first task in the script.js file was to enable the radio button to switch themes. This was achieved by adding an event listener to them, which removed and added classes, and therefore a theme to the whole calculator container was applied.
 
 Making calculator perform calculations was the most important part of the task. I have decided to add an event lister to every key of the keypad in order to update the display of the calculator. Special keys such as "Del" and "Reset" were given functionalities to delete one or all keys from the display. The equal sign key was given a function to calculate the current content of the display by using `eval` function of JavaScript.
-
-Example:
 
 ```js
 const calculate = (value) => {
